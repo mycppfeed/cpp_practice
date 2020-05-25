@@ -25,6 +25,7 @@ cmake_build: cmake_config
 ifeq ($(BUILD_TYPE), Debug)
 cmake_test: cmake_build
 	cmake --build $(BUILD_DIR) --target test
+	cat $(BUILD_DIR)/Testing/Temporary/LastTest.log
 
 cmake_install: cmake_test
 else
