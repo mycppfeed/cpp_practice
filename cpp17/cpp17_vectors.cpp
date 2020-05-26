@@ -5,7 +5,8 @@
 #include <vector>
 #include <algorithm>
 
-std::ostream& operator<<(std::ostream& os, const std::vector<int>& v) {
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
     os << "[ ";
     for (auto x : v) os << x << " ";
     os << " ]";
@@ -24,12 +25,12 @@ void test_1() {
     v.insert(std::begin(v) + 2, 3, 100);
     std::cout << "              : " << v << "\n\n";
 
-    std::vector<int> src  { -10, -11, -12};
+    std::vector<int> src { -10, -11, -12};
     std::cout << "Inserting { -10, -11, -12 } from source range, at pos 2: \n";
     v.insert(std::begin(v) + 2, src.begin(), src.end());
     std::cout << "              : " << v << "\n\n";
 
-    // Doesnt work - No such overload
+    // Doesn't work - No such overload
     // std::cout << "Inserting 2 copies { -10, -11, -12 } from source range, at pos 1: \n";
     // v.insert(std::begin(v) + 1, 2, src.begin(), src.end());
     // std::cout << "              : " << v << "\n\n";
@@ -48,7 +49,6 @@ void test_2() {
     std::cout << "              : " << v << "\n\n";
 }
 
-
 void test_3() {
     v.erase(
         std::remove_if(v.begin(), v.end(), isOdd ),
@@ -59,9 +59,38 @@ void test_3() {
     std::cout << "              : " << v << "\n\n";
 }
 
+void test_4() {
+    std::vector<std::string> sv{ " Hello", "World", "This", "is", "Is", "An", "Example" };
+    std::cout << "Initial Vector: " << sv << "\n\n";
+
+    // Regular std::find
+    std::string search = "Is";
+    auto it = std::find(sv.begin(), sv.end(), search);
+    printf("Found (%s) ? %s\n", search.c_str(), (it == sv.end())? "False" : "True");
+
+    // Lambda - Convert a string to lowercase and return
+    auto toLower = [](std::string s) {
+        std::transform(s.begin(), s.end(), s.begin(),
+            [](const unsigned char c){ return std::tolower(c);}
+        );
+        return s;
+    };
+
+    // Lambda - Unary Predicate to check input string is "is"
+    search = "is";
+    auto isCaseInsensitive_Is = [toLower, search](const std::string& s) {
+        return (toLower(s) == search);
+    };
+
+    // Regular std::find_if
+    it = std::find_if(sv.begin(), sv.end(), isCaseInsensitive_Is);
+    printf("Found (%s) ? %s\n", search.c_str(), (it == sv.end())? "False" : "True");
+}
+
 int main() {
     test_1();
     test_2();
     test_3();
+    test_4();
     return 0;
 }

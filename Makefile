@@ -1,12 +1,20 @@
+GEN ?= cmake
 BUILD_TYPE ?= Debug
-BUILD_DIR=$(CURDIR)/_build/$(BUILD_TYPE)
-INSTL_DIR=$(CURDIR)/_install/$(BUILD_TYPE)
+BUILD_DIR=$(CURDIR)/_build/$(GEN)/$(BUILD_TYPE)
+INSTL_DIR=$(CURDIR)/_install/$(GEN)/$(BUILD_TYPE)
 
-all: cmake_install
+# all: cmake_install
+all: cmake_test
 
 CMAKE_OPTIONS = -H$(CURDIR)
 CMAKE_OPTIONS += -B$(BUILD_DIR)
 CMAKE_OPTIONS += -DCMAKE_INSTALL_PREFIX=$(INSTL_DIR)
+
+ifeq ($(GEN), xcode)
+	CMAKE_OPTIONS += -G "Xcode"
+else
+	CMAKE_OPTIONS += -G "Unix Makefiles"
+endif
 
 ifeq ($(BUILD_TYPE), Debug)
 	CMAKE_OPTIONS += -DCMAKE_INSTALL_PREFIX=/home/user/workspace/github/Catch2/_install/lib/cmake
@@ -23,9 +31,14 @@ cmake_build: cmake_config
 	cmake --build $(BUILD_DIR)
 
 ifeq ($(BUILD_TYPE), Debug)
+ifeq ($(GEN), xcode)
+cmake_test:
+	open $(BUILD_DIR)/CPP_Practice.xcodeproj
+else
 cmake_test: cmake_build
 	cmake --build $(BUILD_DIR) --target test
 	cat $(BUILD_DIR)/Testing/Temporary/LastTest.log
+endif
 
 cmake_install: cmake_test
 else
