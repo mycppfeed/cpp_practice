@@ -5,7 +5,8 @@ enable_testing()
 
 # add_subdirectory(cpp11)
 # add_subdirectory(cpp14)
-add_subdirectory(cpp17)
+# add_subdirectory(cpp17)
+add_subdirectory(stl)
 
 # string(TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
 # if (BUILD_TYPE STREQUAL debug)
