@@ -38,7 +38,10 @@ std::ostream& operator<<(std::ostream& os, const std::set<T>& s) {
 
 std::ostream& operator<<(std::ostream& os, const std::set<Point>& p) {
     os << "\n[ Size : " << p.size() << " ] [ ";
-    for (auto& e : p) os << "{ " << e._x << ", " << e._y <<" }" << ", ";
+    // for (auto& e : p) os << "{ " << e._x << ", " << e._y <<" }" << ", ";
+
+    // Using structure bindings of C++17
+    for(auto [x, y]  : p) { std::cout << "{ " << x << ", " << y << " }"; }
     os << " ]\n\n";
     return os;
 }
