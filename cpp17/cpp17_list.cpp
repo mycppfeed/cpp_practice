@@ -30,9 +30,29 @@ int main() {
 
     l.unique();
     std::cout << "After Unique  : " << l << "\n";
-    
+
     l.assign(1, 99);
     std::cout << "After Assign  : " << l << "\n";
+
+    l.assign(6, 9);
+    std::cout << "After Assign n: " << l << "\n";
+
+    l.clear();
+    std::cout << "After clear   : " << l << "\n";
+
+    for (auto i = 0; i < 10; i++) l.push_back(i);
+    std::cout << "After Reinit  : " << l << "\n";
+
+    // Note, list position is indexed with 0
+    auto it = l.begin();
+    std::advance(it, 4);
+    std::cout << "Data at pos 5 : " << *it << "\n";
+
+    // Note, list iterator is bidirectional.
+    // So, it wraps to pos 0 when end is reached.
+    it = l.begin();
+    std::advance(it, l.size() + 2);
+    std::cout << "Data at pos 2 : " << *it << "\n";
 
     return 0;
 }
