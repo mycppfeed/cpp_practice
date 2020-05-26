@@ -3,7 +3,8 @@ project(CPP_Practice LANGUAGES CXX)
 cmake_minimum_required(VERSION 3.5)
 enable_testing()
 
-add_subdirectory(cpp14)
+# add_subdirectory(cpp11)
+# add_subdirectory(cpp14)
 add_subdirectory(cpp17)
 
 # string(TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
