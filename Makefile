@@ -32,7 +32,7 @@ cmake_build: cmake_config
 
 ifeq ($(BUILD_TYPE), Debug)
 ifeq ($(GEN), xcode)
-cmake_test:
+cmake_test: cmake_build
 	open $(BUILD_DIR)/CPP_Practice.xcodeproj
 else
 cmake_test: cmake_build

@@ -15,3 +15,6 @@ add_test(cpp17_vectors_t cpp17_vectors)
 
 add_executable(cpp17_array cpp17_array.cpp)
 add_test(cpp17_array_t cpp17_array)
+
+add_executable(cpp17_list cpp17_list.cpp)
+add_test(cpp17_list_t cpp17_list)
