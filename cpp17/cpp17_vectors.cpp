@@ -87,10 +87,28 @@ void test_4() {
     printf("Found (%s) ? %s\n", search.c_str(), (it == sv.end())? "False" : "True");
 }
 
+void test_5() {
+    // Compare two strings, character by character using std::equal
+    std::string s1 = "hello";
+    std::string s2 = "world";
+    auto isEqual = [s1, s2]() {
+        std::equal(
+            std::begin(s1), end(s1),
+            std::begin(s2), end(s2),
+            [](char c1, char c2) {
+                printf("%c <=> %c", c1, c2);
+                return c1 == c2;
+            }
+        );
+    };
+    isEqual();
+}
+
 int main() {
     test_1();
     test_2();
     test_3();
     test_4();
+    test_5();
     return 0;
 }
