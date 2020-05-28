@@ -41,7 +41,11 @@ std::ostream& operator<<(std::ostream& os, const std::set<Point>& p) {
     // for (auto& e : p) os << "{ " << e._x << ", " << e._y <<" }" << ", ";
 
     // Using structure bindings of C++17
-    for(auto [x, y]  : p) { std::cout << "{ " << x << ", " << y << " }"; }
+    // for(auto [x, y]  : p) { std::cout << "{ " << x << ", " << y << " }"; }
+
+    // Avoid copy construction
+    for(auto const& [x, y]  : p) { std::cout << "{ " << x << ", " << y << " }"; }
+
     os << " ]\n\n";
     return os;
 }
