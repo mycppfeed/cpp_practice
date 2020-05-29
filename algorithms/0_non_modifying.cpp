@@ -247,8 +247,12 @@ void test_4() {
     auto ret3 = std::mismatch(v1.begin(), v1.end(), v3.begin(), v3.end());
     PrintMissmatch(ret3, std::make_pair(std::ref(v1), std::ref(v3)));
 
+    // The following will cause heap overflow;
+    // Reason: V3 length is assumed to of same as V1, but its not.
+    // auto ret4 = std::mismatch(v1.begin(), v1.end(), v3.begin());
+
     std::cout << "Mismatch(v1, v3) at Elements [ ";
-    auto ret4 = std::mismatch(v1.begin(), v1.end(), v3.begin());
+    auto ret4 = std::mismatch(v1.begin(), v1.end(), v3.begin(), v3.end());
     PrintMissmatch(ret4, std::make_pair(std::ref(v1), std::ref(v3)));
 
     std::cout << "Mismatch(v3, v1) at Elements [ ";
