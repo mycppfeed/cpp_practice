@@ -4,8 +4,5 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(counting counting.cpp)
-add_test(counting_test counting)
-
-add_executable(find find.cpp)
-add_test(find_test find)
+add_executable(0_non_modifying 0_non_modifying.cpp)
+add_test(0_non_modifying_test 0_non_modifying)
