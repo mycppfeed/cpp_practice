@@ -3,7 +3,10 @@ project(CPP_Practice LANGUAGES CXX)
 cmake_minimum_required(VERSION 3.5)
 enable_testing()
 
-# add_subdirectory(cpp11)
+# -fsanitize=memory
+set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address -fsanitize=undefined" )
+set (CMAKE_LINKER_FLAGS_DEBUG "${CMAKE_LINKER_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address -fsanitize=undefined" )
+
 # add_subdirectory(cpp14)
 # add_subdirectory(cpp17)
 # add_subdirectory(stl)
