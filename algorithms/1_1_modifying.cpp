@@ -243,6 +243,17 @@ void test_1() {
     std::cout << " String after std::unique() with back_iterator over S2 and custom predicate : " << s2 << '\n';
 
     print_line();
+
+    IntVector v8;
+    std::fill_n(std::back_inserter(v8), 10, 0);
+    std::cout << " Vector 8, created empty, filled with 0, using fill_n and back_inserter : " << v8;
+    print_line();
+
+    IntVector v9;
+    std::generate_n(std::back_inserter(v9), 10, [n = 0]() mutable { return n++; });
+    std::cout << " Vector 9, created empty, filled using generate_n, back_inserter and lambda : " << v9;
+    print_line();
+
 }
 
 int main() {
