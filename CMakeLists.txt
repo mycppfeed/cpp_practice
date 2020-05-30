@@ -4,8 +4,18 @@ cmake_minimum_required(VERSION 3.5)
 enable_testing()
 
 # -fsanitize=memory
-set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address -fsanitize=undefined" )
-set (CMAKE_LINKER_FLAGS_DEBUG "${CMAKE_LINKER_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address -fsanitize=undefined" )
+
+if (CMAKE_GENERATOR STREQUAL "Xcode")
+    set(CMAKE_XCODE_GENERATE_SCHEME ON)
+    set(CMAKE_XCODE_SCHEME_ADDRESS_SANITIZER ON)
+    set(CMAKE_XCODE_SCHEME_ADDRESS_SANITIZER_USE_AFTER_RETURN ON)
+    set(CMAKE_XCODE_SCHEME_UNDEFINED_BEHAVIOUR_SANITIZER ON)
+    set(CMAKE_XCODE_SCHEME_MALLOC_SCRIBBLE ON)
+    set(CMAKE_XCODE_SCHEME_ZOMBIE_OBJECTS ON)
+else()
+    set (CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address -fsanitize=undefined" )
+    set (CMAKE_LINKER_FLAGS_DEBUG "${CMAKE_LINKER_FLAGS_DEBUG} -fno-omit-frame-pointer -fsanitize=address -fsanitize=undefined" )
+endif()
 
 # add_subdirectory(cpp14)
 # add_subdirectory(cpp17)
