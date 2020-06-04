@@ -12,3 +12,6 @@ add_test(lambda_test lambda)
 
 add_executable(bare_constructors bare_constructors.cpp)
 add_test(bare_constructors_test bare_constructors)
+
+add_executable(alignment alignment.cpp)
+add_test(alignment_test alignment)
