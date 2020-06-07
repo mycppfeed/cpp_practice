@@ -36,6 +36,7 @@ cmake_test: cmake_build
 	open $(BUILD_DIR)/CPP_Practice.xcodeproj
 else
 cmake_test: cmake_build
+	export ASAN_OPTIONS=verify_asan_link_order=0
 	cmake --build $(BUILD_DIR) --target test
 	cat $(BUILD_DIR)/Testing/Temporary/LastTest.log
 endif
