@@ -1,10 +1,26 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <exception>
 
 auto PrintLine = [] () { std::cout << "==============================================\n"; };
 
 int global = -1;
+
+void test_3() {
+    PrintLine();
+    auto LambdaWithException = [] () { // If 'noexcept' is added, then the exception wont be caught
+        throw std::runtime_error("ExampleException");
+    };
+
+    try {
+        std::cout << "LambdaWithException:\n";
+        LambdaWithException();
+    } catch (std::runtime_error & e) {
+        std::cout << "Exception from lambda: " << e.what() << "\n\n";
+    }
+    PrintLine();
+}
 
 void test_2() {
 //    int local_1 = 0;
@@ -102,8 +118,6 @@ void test_1() {
     std::cout << " Global Value in func   : " << global << "\n";
     std::cout << " Local  Value in func   : " << local << "\n";
     std::cout << " Local-2 Value in func  : " << local2 << "\n\n";
-    // error: 'global' cannot be captured because it does not have automatic storage duration
-    // auto CaptureGlobalByValue = [ global ] {
     auto CaptureBothByRefAndValue = [ &, local2 ]{
         global++;
         local++;
@@ -113,6 +127,24 @@ void test_1() {
         std::cout << " Local-2 Value in lambda: " << local2 << "\n\n";
     };
     CaptureBothByRefAndValue();
+    std::cout << " Global Value in func   : " << global << "\n";
+    std::cout << " Local  Value in func   : " << local << "\n";
+    std::cout << " Local-2 Value in func  : " << local2 << "\n\n";
+
+    PrintLine();
+    std::cout << "MutableLambda: allows body to modify the objects captured by copy, and to call their non-const member functions \n";
+    std::cout << " Global Value in func   : " << global << "\n";
+    std::cout << " Local  Value in func   : " << local << "\n";
+    std::cout << " Local-2 Value in func  : " << local2 << "\n\n";
+    auto MutableLambda = [ = ] () mutable {
+        global++;
+        local++;
+        local2++;
+        std::cout << " Global Value in lambda : " << global << "\n";
+        std::cout << " Local  Value in lambda : " << local << "\n";
+        std::cout << " Local-2 Value in lambda: " << local2 << "\n\n";
+    };
+    MutableLambda();
     std::cout << " Global Value in func   : " << global << "\n";
     std::cout << " Local  Value in func   : " << local << "\n";
     std::cout << " Local-2 Value in func  : " << local2 << "\n\n";
@@ -130,6 +162,7 @@ void test_1() {
 int main(){
     test_1();
     test_2();
+    test_3();
 
     return 0;
 }
