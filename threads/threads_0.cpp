@@ -7,7 +7,8 @@
  */
 namespace ConstVals {
     uint64_t start = 0;
-    uint64_t end = 1900000000;
+    uint64_t end = 10;
+//    uint64_t end = 1900000000;
 }
 
 /**
@@ -29,19 +30,23 @@ auto PrintSums = [](uint64_t evens, uint64_t odds) {
 };
 
 auto LRefAddEvens = [](uint64_t start, uint64_t end, uint64_t& sum) {
+    std::cout <<" TID : " << std::thread::id() << "\t" << std::this_thread::get_id() << "\n";
     for(uint64_t i = start; i <= end; i++) if (!(i & 1)) sum += i;
 };
 
 auto LRefAddOdds = [](uint64_t start, uint64_t end, uint64_t& sum) {
+    std::cout <<" TID : " << std::thread::id() << "\t" << std::this_thread::get_id() << "\n";
     for(uint64_t i = start; i <= end; i++) if (i & 1) sum += i;
 };
 
 
 auto L_Global_AddEvens = [](uint64_t start, uint64_t end) {
+    std::cout <<" TID : " << std::thread::id() << "\t" << std::this_thread::get_id() << "\n";
     for(uint64_t i = start; i <= end; i++) if (!(i & 1)) GEvens += i;
 };
 
 auto L_Global_AddOdds = [](uint64_t start, uint64_t end) {
+    std::cout <<" TID : " << std::thread::id() << "\t" << std::this_thread::get_id() << "\n";
     for(uint64_t i = start; i <= end; i++) if (i & 1) GOdds += i;
 };
 
@@ -50,18 +55,22 @@ auto L_Global_AddOdds = [](uint64_t start, uint64_t end) {
  * Free Functions
  */
 void Fn_AddEvens_Ref(uint64_t start, uint64_t end, uint64_t& sum) {
+    std::cout <<" TID : " << std::thread::id() << "\t" << std::this_thread::get_id() << "\n";
     for(uint64_t i = start; i <= end; i++) if (!(i & 1)) sum += i;
 };
 
 void Fn_AddOdds_Ref(uint64_t start, uint64_t end, uint64_t& sum) {
+    std::cout <<" TID : " << std::thread::id() << "\t" << std::this_thread::get_id() << "\n";
     for(uint64_t i = start; i <= end; i++) if (i & 1) sum += i;
 };
 
 void Fn_AddEvens_Global(uint64_t start, uint64_t end) {
+    std::cout <<" TID : " << std::thread::id() << "\t" << std::this_thread::get_id() << "\n";
     for(uint64_t i = start; i <= end; i++) if (!(i & 1)) GEvens += i;
 };
 
 void Fn_AddOdds_Global(uint64_t start, uint64_t end) {
+    std::cout <<" TID : " << std::thread::id() << "\t" << std::this_thread::get_id() << "\n";
     for(uint64_t i = start; i <= end; i++) if (i & 1) GOdds += i;
 };
 
@@ -173,7 +182,17 @@ void noThread() {
     PrintLine();
 }
 
+void ThreadJoinErrors() {
+    std::thread t1;
+    try {
+        t1.join();
+    } catch (std::exception& e) {
+        std::cout << "Exception : " << e.what() << "\n\n";
+    }
+}
+
 int main() {
+    ThreadJoinErrors();
     noThread();
     ThreadWithFunction_Ref();
     ThreadWithFunction_Global();
