@@ -1,0 +1,3 @@
+add_executable(boost_filesystem boost_filesystem.cpp)
+target_link_libraries(boost_filesystem Boost::filesystem)
+add_test(boost_filesystem_test boost_filesystem)
