@@ -24,7 +24,11 @@ endif()
 # add_subdirectory(algorithms)
 # add_subdirectory(regex)
 # add_subdirectory(threads)
-add_subdirectory(chrono)
+# add_subdirectory(chrono)
+# add_subdirectory(filesystem)
+add_subdirectory(oop)
+
+# add_subdirectory(boost)
 
 # string(TOLOWER ${CMAKE_BUILD_TYPE} BUILD_TYPE)
 # if (BUILD_TYPE STREQUAL debug)
