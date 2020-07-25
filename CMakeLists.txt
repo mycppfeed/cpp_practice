@@ -27,7 +27,8 @@ endif()
 # add_subdirectory(threads)
 # add_subdirectory(chrono)
 # add_subdirectory(filesystem)
-add_subdirectory(oop)
+# add_subdirectory(oop)
+add_subdirectory(scratch)
 
 # add_subdirectory(boost)
 
