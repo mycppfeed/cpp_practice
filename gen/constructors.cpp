@@ -2,9 +2,16 @@
 #include <iostream>
 #include <set>
 
+auto PrintLine = []() { std::cout << "\n=========================================\n\n"; };
+
 class Point {
 public:
-    Point() : _x(0), _y(0) { std::cout << "Default Constructor of Point\n"; }
+    Point() : _x(0), _y(0) {
+        PrintLine();
+        std::cout << "Default Constructor of Point\n";
+        PrintLine();
+    }
+
     Point(int x, int y) : _x(x), _y(y) { std::cout << "Parameterized Constructor of Point\n"; }
 
     Point(const Point& p) : _x(p._x), _y(p._y) { std::cout << "Copy constructor of Point\n"; }
