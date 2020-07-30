@@ -28,7 +28,10 @@ endif()
 # add_subdirectory(chrono)
 # add_subdirectory(filesystem)
 # add_subdirectory(oop)
-add_subdirectory(scratch)
+# add_subdirectory(scratch)
+
+include_directories(3rdparty/GSL/include)
+add_subdirectory(CoreGuidelines)
 
 # add_subdirectory(boost)
 
