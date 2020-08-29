@@ -49,3 +49,6 @@ endif
 
 clean:
 	rm -rf $(BUILD_DIR) $(INSTL_DIR)
+
+clean_all:
+	rm -rf _build _install
