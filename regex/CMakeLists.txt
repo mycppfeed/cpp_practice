@@ -6,3 +6,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_executable(parcel_decoder parcel_decoder.cpp)
 add_test(parcel_decoder_test parcel_decoder ${CMAKE_CURRENT_SOURCE_DIR}/wifi.dat)
+
+add_executable(regex_search_match regex_search_match.cpp)
+add_test(regex_search_match_test regex_search_match)
