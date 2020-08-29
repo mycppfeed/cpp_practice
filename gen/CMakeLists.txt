@@ -21,3 +21,5 @@ add_test(global_initializer_class_test global_initializer_class)
 
 add_executable(operator_overloading operator_overloading.cpp)
 add_test(operator_overloading_test operator_overloading)
+
+add_executable(operator_overloading_0 operator_overloading_0.cpp)
