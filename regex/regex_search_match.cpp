@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <cassert>
 
 /**
  * Regex documented:
