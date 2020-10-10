@@ -1,0 +1,1 @@
+add_executable(function_object function_object.cpp)
