@@ -15,3 +15,6 @@ add_test(oop_3_test oop_3)
 
 add_executable(association association.cpp)
 add_test(association_test association)
+
+add_executable(VirtualFunction VirtualFunction.cpp)
+add_test(VirtualFunction_test VirtualFunction)
