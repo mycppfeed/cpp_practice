@@ -5,7 +5,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 message("Supported features = ${CMAKE_CXX_COMPILE_FEATURES}")
 
 # add_subdirectory(objectSlicing)
-add_subdirectory(vtable)
+# add_subdirectory(vtable)
 # add_subdirectory(typeid)
 
 # add_executable(constructors constructors.cpp)
@@ -27,3 +27,6 @@ add_subdirectory(vtable)
 # add_test(operator_overloading_test operator_overloading)
 
 # add_executable(operator_overloading_0 operator_overloading_0.cpp)
+
+add_executable(Redirect_stdin_to_File Redirect_stdin_to_File.cpp)
+add_test(Redirect_stdin_to_File_test Redirect_stdin_to_File)
