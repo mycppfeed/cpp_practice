@@ -6,6 +6,7 @@ message("Supported features = ${CMAKE_CXX_COMPILE_FEATURES}")
 
 # add_subdirectory(objectSlicing)
 add_subdirectory(vtable)
+# add_subdirectory(typeid)
 
 # add_executable(constructors constructors.cpp)
 # add_test(constructors_test constructors)

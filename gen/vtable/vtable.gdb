@@ -8,7 +8,7 @@ set print asm-demangle on
 set print demangle on
 
 # at entry point - cmd1
-b vtable.cpp:66
+b vtable.cpp:73
 
 echo \n
 echo =========================================\n\n

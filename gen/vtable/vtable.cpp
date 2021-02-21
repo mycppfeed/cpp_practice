@@ -38,26 +38,54 @@ public:
  ****************************************************************/
 class Mother {
  public:
-  virtual void MotherMethod() {}
+  virtual void MotherMethod() {
+      return;
+  }
   int mother_data;
 };
 
 class Father {
  public:
-  virtual void FatherMethod() {}
+  virtual void FatherMethod() {
+      return;
+  }
   int father_data;
 };
 
 class Child : public Mother, public Father {
  public:
-  virtual void ChildMethod() {}
+  virtual void ChildMethod() {
+      return;
+  }
   int child_data;
+};
+
+void GetChild(Child& c) {
+    c.ChildMethod();
+}
+
+void GetMother(Mother& m) {
+    m.MotherMethod();
+}
+
+void GetFather(Father& f) {
+    f.FatherMethod();
+}
+
+class InitializedClass {
+public:
+    int x;
+    int y;
+    std::string sd;
+    static std::string yt;
 };
 
 int main() {
     // MyClass c1;
     // DerivedX dx1;
 
+
+    InitializedClass x;
 
     Parent p1;
     Derived d1;
@@ -66,7 +94,15 @@ int main() {
     Father f1;
     Child ch1;
 
+    printf("Child : %p\n", &ch1);
     std::cout << "done" << std::endl;
+
+    auto t1 = (void*)static_cast<Father*>(&ch1);
+    auto t2 = (void*)&ch1;
+    
+    GetChild(ch1);
+    GetMother(ch1);
+    GetFather(ch1);
 
     p1.bar();
     d1.bar();
